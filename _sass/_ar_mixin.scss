@@ -1,0 +1,303 @@
+@charset "UTF-8";
+
+@mixin ft($family, $size, $weight, $color, $lineheight) // define font
+{
+	font-family: $family;
+	font-size: $size;
+	font-weight: $weight;
+	color: $color;
+	line-height: $lineheight;
+}
+
+@mixin tx($de, $tl, $tp, $mo) // define alignment
+{
+	text-align: $de;
+
+	@media screen and (max-width: $m_tablet_landscape) {
+		text-align: $tl;
+	}
+	@media screen and (max-width: $m_tablet_portrait) {
+		text-align: $tp;
+	}
+	@media screen and (max-width: $m_mobile) {
+		text-align: $mo;
+	}
+}
+
+@mixin rd($radius) // define radius
+{
+	-webkit-border-radius: $radius+px;
+	-moz-border-radius: $radius+px;
+	border-radius: $radius+px;
+}
+
+@mixin bs($horizontal, $vertical, $blur, $size, $color) // define shadow
+{
+	-webkit-box-shadow: $horizontal+px $vertical+px $blur+px $size+px $color;
+	-moz-box-shadow: $horizontal+px $vertical+px $blur+px $size+px $color;
+	box-shadow: $horizontal+px $vertical+px $blur+px $size+px $color;
+}
+
+@mixin an($type, $time) // define animation
+{
+	-webkit-transition:$type $time+s;
+	-moz-transition:$type $time+s;
+	transition:$type $time+s;
+}
+
+@mixin dl($time) // define animation
+{
+	-webkit-transition-delay:$time+s;
+	-moz-transition-delay: $time+s;
+   	transition-delay: $time+s;
+}
+
+@mixin box($background) // define box
+{
+	position: relative;
+	padding: 20px 20px 1px 20px;
+	background: $background;
+
+	h1, h2, h3, h4, p, p strong, p a, li, li strong, li a
+	{
+		color: $c_white;
+	}
+}
+
+@mixin btn($background, $color, $radius, $font, $size) // define button
+{
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 10px 30px;
+	@include ft($font,$size,400,$color,$size+10);
+	background-color: $background;
+	text-decoration: none;
+	cursor: pointer;
+	@include rd($radius);
+	@include an(all, 0.3);
+
+	&:hover
+	{
+		background-color: darken($background,5%);
+	}
+}
+@mixin btnbis($background, $border, $color, $radius, $font, $size) // define button
+{
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 8px 28px;
+	@include ft($font,$size,400,$color,$size+10);
+	border-color: $background;
+	border-width: $border;
+	border-style: solid;
+	text-decoration: none;
+	cursor: pointer;
+	@include rd($radius);
+	@include an(all, 0.3);
+
+	&:hover
+	{
+		border-color: darken($background,10%);
+	}
+}
+
+@mixin va($height) // define vertical alignment
+{
+	position: relative;
+	height: $height+px;
+	line-height: $height+px;
+
+	div:first-child
+	{
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		line-height: 10px;
+	}
+}
+
+@mixin px() // define parallax
+{
+	position: relative;
+	background-position: center 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@mixin hs($de, $tl, $tp, $mo) // define hide/show
+{
+	display: $de;
+
+	@media screen and (max-width: $m_tablet_landscape) {
+		display: $tl;
+	}
+	@media screen and (max-width: $m_tablet_portrait) {
+		display: $tp;
+	}
+	@media screen and (max-width: $m_mobile) {
+		display: $mo;
+	}
+}
+
+@mixin ld_scale()
+{
+	&:before
+	{
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -12px 0 0 -12px;
+		display: block;
+		width: 24px;
+		height: 24px;
+		background: $c_main;
+		z-index: 0;
+		-webkit-border-radius: 200px;
+		-moz-border-radius: 200px;
+		border-radius: 200px;
+		-webkit-animation: ld_scale 1.2s infinite linear;
+		animation: ld_scale 1.2s infinite linear;
+	}
+}
+@mixin ld_spin()
+{
+	&:before
+	{
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -12px 0 0 -12px;
+		display: block;
+		width: 24px;
+		height: 24px;
+		border: solid $c_main; 
+		border-width: 2px 0 0 0;
+		z-index: 0;
+		-webkit-border-radius: 200px;
+		-moz-border-radius: 200px;
+		border-radius: 200px;
+		-webkit-animation: ld_spin 0.5s infinite linear;
+		animation: ld_spin 0.5s infinite linear;
+	}
+}
+
+@mixin row() // define rows
+{
+	position: relative;
+	clear: both;
+	margin: 0 auto;
+	padding: 0;
+	width: 100%;
+	max-width: $m_desktop;
+
+	@media screen and (max-width: $m_desktop) {
+		max-width: ($m_tablet_landscape - 40);
+	}
+	@media screen and (max-width: $m_tablet_landscape) {
+		max-width: ($m_tablet_portrait - 40);
+	}
+	@media screen and (max-width: $m_mobile) {
+		max-width: 100%;
+		min-width: 320px;
+		padding: 0 10px;
+	}
+}
+
+@mixin gutter() // remove gutter
+{
+	margin-left: -$g;
+	margin-right: -$g;
+}
+
+@mixin clear() // clear float
+{
+	&:after
+	{
+		content: '';
+		position: relative;
+		display: block;
+		width: 100%;
+		height: 0;
+		line-height: 1px;
+		clear: both;
+		overflow: hidden;
+	}
+}
+
+@mixin column($de, $tl, $tp, $mo) // define columns
+{
+	position: relative;
+	float: left;
+	width: unquote((($de/$n_col)*100)+'%');
+	padding: 0 $g;
+	min-height: 1px;
+
+	@media screen and (max-width: $m_tablet_landscape) {
+		width: unquote((($tl/$n_col)*100)+'%');
+	}
+	@media screen and (max-width: $m_tablet_portrait) {
+		width: unquote((($tp/$n_col)*100)+'%');
+	}
+	@media screen and (max-width: $m_mobile) {
+		width: unquote((($mo/$n_col)*100)+'%');
+	}
+}
+
+@mixin click() // large link
+{
+	position: relative;
+	display: block;
+	width: 100%;
+	text-decoration: none;
+
+	&:hover,
+	&:hover *
+	{
+		text-decoration: none;
+	}
+}
+
+@mixin zoom() // hover zoom image
+{
+	position: relative;
+	width: 100%;
+	background: $c_txt;
+	overflow: hidden;
+
+	img
+	{	
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		backface-visibility: hidden;
+		-webkit-transform: translateZ(0);
+	    -moz-transform: translateZ(0);
+	    transform: translateZ(0);
+		-webkit-transform-style: preserve-3d;
+		-moz-transform-style: preserve-3d;
+		transform-style: preserve-3d;			
+		-moz-transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+		transform: scale(1.0);
+		opacity: 1.0;
+		@include an(all, 0.3);
+	}
+	&:hover img
+	{
+		-moz-transform: scale(1.1);
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
+		opacity: 0.9;
+	}
+}
+
+@mixin space($nbs) // add space
+{
+	position: relative;
+	clear: both;
+	width: 100%;
+	height: ($nbs*10)+px;
+}

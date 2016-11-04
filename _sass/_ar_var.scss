@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+$n_col: 24;																				// grid column
+
+$c_main: #004042;																		// primary color
+$c_sub: #740000;																		// secondary color
+$c_txt: #484848;																		// text color
+$c_white: #ffffff;
+$c_light: #f5f5f5;																		// light background, input, msg, ...
+$c_black: #000000;
+$c_dark: #303030;																		// dark background, input, msg, ...
+$c_valid: #40b64b;																		// validation color
+$c_error: #d92148;																		// error color
+
+$f_hx: 'Lato', sans-serif;																// headings font
+$f_txt: 'Open Sans', sans-serif;														// corps font
+
+$s_h1: 34px;																			// size <h1>
+$s_h2: 28px;																			// size <h2>
+$s_h3: 22px;																			// size <h3>
+$s_h4: 16px;																			// size <h4>
+$s_p: 14px;																				// size <p>, <strong>, <a>, <li>, ...
+
+$g: 10px;																				// value for grid gutter
+
+$m_desktop: 1200px;																		// desktop media query
+$m_tablet_landscape: 1024px;															// tablet landscape media query
+$m_tablet_portrait: 768px;																// tablet portrait media query
+$m_mobile: 767px;																		// mobile media query
